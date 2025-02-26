@@ -1,0 +1,12 @@
+<div class="register-container">
+    <h2>Register</h2>
+
+    <label>Username: </label>
+    <input type="text" [(ngModel)]="username" placeholder="Enter your username" required />
+    <label>Password: </label>
+    <input type="text" [(ngModel)]="password" placeholder="Enter your password" required />
+
+    <button (click)="register()">Register</button>`
+    <p *ngIf="errorMsg">{{ errorMsg }}</p>
+    <p>Already Registered? <a routerLink="/login">Login here</a></p>
+</div>

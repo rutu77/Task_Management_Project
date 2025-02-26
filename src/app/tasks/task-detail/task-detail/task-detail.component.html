@@ -1,0 +1,9 @@
+<div *ngIf="task" class="task-details">
+    <h2>Task Details</h2>
+    <p>Name: {{ task.title }}</p>
+    <p>Description: {{ task.description }}</p>
+    <p>Status: {{ task.status }}</p>
+    <p>Priority: {{ task.priority }}</p>
+</div>
+<div *ngIf="!task">No Task Details Found</div>
+  
