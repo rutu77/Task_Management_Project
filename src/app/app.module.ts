@@ -10,10 +10,18 @@ import { AdminModule } from './admin/admin.module';
 import { TaskModule } from './tasks/task.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+<<<<<<< HEAD
+=======
+import { NavbarComponent } from './navbar/navbar.component';
+>>>>>>> 4d5ee0e (second)
 
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
+=======
+    NavbarComponent,
+>>>>>>> 4d5ee0e (second)
   ],
   imports: [
     BrowserModule,

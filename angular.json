@@ -102,5 +102,11 @@
         }
       }
     }
+<<<<<<< HEAD
+=======
+  },
+  "cli": {
+    "analytics": false
+>>>>>>> 4d5ee0e (second)
   }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- login.component.html -->
 <div class="login-container">
     <h2>Login</h2>
@@ -15,3 +16,17 @@
     </form>
   </div>
   
+=======
+<div class="login-container">
+  <h2>Login</h2>
+  <form #form="ngForm" (ngSubmit)="login()">
+    <input type="text" placeholder="Username" [(ngModel)]="username" name="username" required>
+    <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+    
+    <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+    
+    <button type="submit" [disabled]="form.invalid">Login</button>
+  </form>
+  <p>Not Registered? <a routerLink="/auth/register">Register here</a></p>
+</div>
+>>>>>>> 4d5ee0e (second)

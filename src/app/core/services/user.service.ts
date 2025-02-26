@@ -20,6 +20,7 @@ export class UserService {
     this.saveUsers();
   }
 
+<<<<<<< HEAD
   updateUser(updatedUser: User): void {
     this.users = this.users.map(user => user.id === updatedUser.id ? updatedUser : user);
     this.saveUsers();
@@ -36,5 +37,13 @@ export class UserService {
 
   getUserById(id: number): User | undefined {
     return this.users.find(user => user.id === id);
+=======
+  isUserNameRegistered(name: string): boolean {
+    return this.users.some(user => user.name === name);
+  }
+
+  getUserByUsernameAndPassword(name: string, password: string): User | undefined {
+    return this.users.find(user => user.name === name && user.password === password);
+>>>>>>> 4d5ee0e (second)
   }
 }
