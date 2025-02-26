@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-export interface User{
-    id:number;
-    name:string;
-    password:string;
-    role:'admin'|'user';
-}
-=======
 export interface User {
     id: number;
     name: string;
@@ -13,4 +5,3 @@ export interface User {
     role: 'admin' | 'user';
   }
   
->>>>>>> 4d5ee0e (second)

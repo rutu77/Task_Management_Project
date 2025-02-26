@@ -22,12 +22,6 @@ export class AuthService {
     this.roleSubject.next(role);
   }
 
-<<<<<<< HEAD
-  
-  register(name: string, password: string){
-    return true;
-  }
-=======
   register(name: string, password: string, role: 'user' | 'admin'): boolean {
     if (this._user.isUserNameRegistered(name)) {
       return false; // User already exists
@@ -44,7 +38,6 @@ export class AuthService {
     return true; // Registration successful
   }
   
->>>>>>> 4d5ee0e (second)
 
   logout() {
     localStorage.clear();
@@ -54,10 +47,6 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return localStorage.getItem('loggedIn') === 'true';
-<<<<<<< HEAD
-    // return localStorage.getItem('user_role') !== null;
-=======
->>>>>>> 4d5ee0e (second)
   }
 
   getRole(): 'user' | 'admin' | null {
@@ -68,15 +57,3 @@ export class AuthService {
     return this.getRole() === 'admin';
   }
 }
-<<<<<<< HEAD
-
-  // register(name: string, password: string) {
-  //   if (this._user.isUserNameRegistered(name)) {
-  //     return false;
-  //   }
-  //   const newUser: User = { id: Date.now(), name, password, role: 'user' };
-  //   this._user.addUser(newUser);
-  //   return true;
-  // }
-=======
->>>>>>> 4d5ee0e (second)
