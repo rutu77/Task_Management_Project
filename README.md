@@ -1,59 +1,113 @@
-# MyProjectOne
+# TaskFlow
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+TaskFlow is a modern Angular-based task management application designed for managing daily tasks with role-based access. It includes task tracking, status updates, search/filter tools, and an admin dashboard.
 
-## Development server
+## Project Highlights
 
-To start a local development server, run:
+- User registration and login
+- Role-based access for admin and regular users
+- Create, update, delete, and view tasks
+- Search and filter tasks by title and status
+- Dashboard summaries for total, pending, in-progress, and completed tasks
+- Clean responsive UI inspired by modern dashboard layouts
+
+## Tech Stack
+
+- Angular 19
+- TypeScript
+- RxJS
+- HTML/CSS
+- LocalStorage for persistence
+
+## Demo Credentials
+
+This project includes seeded users for quick testing:
+
+- Admin: `admin` / `admin123`
+- User: `user` / `user123`
+
+## Screenshots
+
+### Dashboard View
+
+![Task dashboard](./docs/screenshots/task-dashboard.png)
+
+### Task Details View
+
+![Task details](./docs/screenshots/task-details.png)
+
+## Features
+
+### Task Management
+
+- Add new tasks with title, description, priority, and status
+- Update task status between Pending, In Progress, and Completed
+- Delete tasks from the dashboard
+- View detailed task information
+
+### Search and Filtering
+
+- Search by task title or description
+- Filter tasks by all statuses or a specific status
+
+### Admin Panel
+
+- View task summaries
+- Monitor user count and task progress
+- Access user management information
+
+## Local Setup
+
+1. Clone the repository
+2. Open the project folder
+3. Install dependencies:
 
 ```bash
-ng serve
+npm install
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+4. Start the Angular app:
 
 ```bash
-ng generate component component-name
+npm start
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+5. Open the app in the browser at:
+
+```text
+http://localhost:4200/
+```
+
+## Production Build
 
 ```bash
-ng generate --help
+npm run build
 ```
 
-## Building
-
-To build the project run:
+## Testing
 
 ```bash
-ng build
+npx ng test --watch=false --browsers=ChromeHeadless
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Project Structure
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```text
+src/
+├── app/
+│   ├── admin/
+│   ├── auth/
+│   ├── core/
+│   ├── tasks/
+│   ├── navbar/
+│   ├── app-routing.module.ts
+│   ├── app.component.ts
+│   └── app.module.ts
+├── styles.css
+└── index.html
 ```
 
-## Running end-to-end tests
+## Notes
 
-For end-to-end (e2e) testing, run:
+This project uses browser localStorage for data persistence, making it easy to run without an external backend. It is ideal for learning Angular routing, services, state management, and UI design patterns.
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
