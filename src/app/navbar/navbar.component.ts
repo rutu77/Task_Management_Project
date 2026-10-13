@@ -6,20 +6,29 @@ import { Router } from '@angular/router';
   selector: 'app-navbar',
   standalone: false,
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  isLoggedIn:boolean=false;
-  isAdmin:boolean=false;
+  isLoggedIn = false;
+  isAdmin = false;
+  currentUser = '';
 
-  constructor(private _auth:AuthService, private route:Router){
-    this._auth.$authState.subscribe(status=>this.isLoggedIn=status)
-    this._auth.$authState.subscribe(role=>this.isAdmin=role)
+  constructor(private _auth: AuthService, private route: Router) {
+    this._auth.$authState.subscribe(status => {
+      this.isLoggedIn = status;
+      if (status) {
+        this.currentUser = this._auth.getCurrentUserName();
+      } else {
+        this.currentUser = '';
+      }
+    });
+
+    this._auth.$role.subscribe(role => this.isAdmin = role === 'admin');
   }
 
-    logout(){
-      this._auth.logout()
-      this.route.navigate(['/auth/login'])
-    }
-
+  logout(): void {
+    this._auth.logout();
+    this.currentUser = '';
+    this.route.navigate(['/auth/login']);
+  }
 }

@@ -1,25 +1,45 @@
-<div class="task-form">
-    <h2>Add Task</h2>
-    <form (ngSubmit)="addTask()">
-        <div>
-            <label for="title">Title: </label>
-            <input type="text" id="title" [(ngModel)]="task.title" name="title" required>
-        </div>
-        <div>
-            <label for="description">Description: </label>
-            <input type="text" id="description" [(ngModel)]="task.description" name="description" required>
-        </div>
-        <!-- <div>
-            <label for="status">Status: </label>
-            <input type="text" id="status" [(ngModel)]="task.status" name="status" required>
-        </div> -->
-        <select name="status" id="status" [(ngModel)]="task.priority">
+<section class="page-shell">
+  <div class="panel form-panel">
+    <div class="panel-header">
+      <div>
+        <span class="eyebrow">New task</span>
+        <h2>Create task</h2>
+      </div>
+      <a class="inline-link" routerLink="/tasks/task-list">View task list</a>
+    </div>
+
+    <form class="task-form" (ngSubmit)="addTask()" novalidate>
+      <label class="field">
+        <span>Title</span>
+        <input type="text" id="title" [(ngModel)]="task.title" name="title" placeholder="Task title" required>
+      </label>
+
+      <label class="field">
+        <span>Description</span>
+        <textarea id="description" rows="4" [(ngModel)]="task.description" name="description" placeholder="Describe the task" required></textarea>
+      </label>
+
+      <div class="inline-fields">
+        <label class="field">
+          <span>Status</span>
+          <select name="status" id="status" [(ngModel)]="task.status">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Completed">Completed</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Priority</span>
+          <select name="priority" id="priority" [(ngModel)]="task.priority">
             <option value="Low">Low</option>
             <option value="Normal">Normal</option>
             <option value="High">High</option>
           </select>
-        <button type="submit">Add Task</button>
-    </form>
+        </label>
+      </div>
 
-    <a routerLink="/tasks/task-list">Go to task list</a>
-</div>
+      <button class="primary-btn" type="submit" [disabled]="!task.title.trim() || !task.description.trim()">Add task</button>
+    </form>
+  </div>
+</section>

@@ -7,28 +7,27 @@ import { User } from '../../../core/models/user.model';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  standalone:false,
+  standalone: false,
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  errorMsg: string = '';
+  username = '';
+  password = '';
+  errorMsg = '';
 
   constructor(private _auth: AuthService, private _user: UserService, private router: Router) {}
 
-  login() {
-    const user: User | undefined = this._user.getUserByUsernameAndPassword(this.username, this.password);
+  login(): void {
+    const normalizedName = this.username.trim();
+    const user: User | undefined = this._user.getUserByUsernameAndPassword(normalizedName, this.password);
 
     if (!user) {
-      alert('User not registered or incorrect username or password!');
-      // this.router.navigate(['/auth/register']);
+      this.errorMsg = 'User not registered or the password is incorrect.';
       return;
     }
 
-    const role = user.role;
-    this._auth.login(role);
-    this.router.navigate([role === 'admin' ? '/tasks/task-form' : '/tasks/task-list']);
+    this._auth.login(user.role, user.name, user.id);
+    this.router.navigate([user.role === 'admin' ? '/tasks/task-form' : '/tasks/task-list']);
   }
 }
 

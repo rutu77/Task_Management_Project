@@ -6,12 +6,40 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
-  private userSubject = new BehaviorSubject<User[]>(this.users);
+  private readonly storageKey = 'users';
+  private users: User[] = [];
+  private userSubject = new BehaviorSubject<User[]>([]);
   $user = this.userSubject.asObservable();
 
-  private saveUsers() {
-    localStorage.setItem('users', JSON.stringify(this.users));
+  constructor() {
+    this.users = this.loadUsers();
+    this.ensureSeedUsers();
+    this.saveUsers();
+  }
+
+  private loadUsers(): User[] {
+    try {
+      const storedUsers = localStorage.getItem(this.storageKey);
+      const parsedUsers = storedUsers ? JSON.parse(storedUsers) : [];
+      return Array.isArray(parsedUsers) ? parsedUsers : [];
+    } catch {
+      return [];
+    }
+  }
+
+  private ensureSeedUsers(): void {
+    if (this.users.length > 0) {
+      return;
+    }
+
+    this.users = [
+      { id: 1, name: 'admin', password: 'admin123', role: 'admin' },
+      { id: 2, name: 'user', password: 'user123', role: 'user' }
+    ];
+  }
+
+  private saveUsers(): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.users));
     this.userSubject.next([...this.users]);
   }
 
@@ -20,11 +48,15 @@ export class UserService {
     this.saveUsers();
   }
 
+  getAllUsers(): User[] {
+    return [...this.users];
+  }
+
   isUserNameRegistered(name: string): boolean {
-    return this.users.some(user => user.name === name);
+    return this.users.some(user => user.name.toLowerCase() === name.trim().toLowerCase());
   }
 
   getUserByUsernameAndPassword(name: string, password: string): User | undefined {
-    return this.users.find(user => user.name === name && user.password === password);
+    return this.users.find(user => user.name.toLowerCase() === name.trim().toLowerCase() && user.password === password);
   }
 }

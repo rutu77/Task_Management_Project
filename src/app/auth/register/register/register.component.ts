@@ -9,20 +9,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  username: string = '';
-  password: string = '';
+  username = '';
+  password = '';
   role: 'user' | 'admin' = 'user';
-  errorMsg: string = '';
+  errorMsg = '';
 
   constructor(private _auth: AuthService, private router: Router) {}
 
-  register() {
+  register(): void {
     if (this._auth.register(this.username, this.password, this.role)) {
-      alert('Registration successful! Redirecting to login...');
-      this.router.navigate(['/login']);
-    } else {
-      this.errorMsg = 'User already exists! Please log in.';
+      this.errorMsg = '';
       this.router.navigate(['/auth/login']);
+      return;
     }
+
+    this.errorMsg = 'User already exists. Please sign in instead.';
   }
 }

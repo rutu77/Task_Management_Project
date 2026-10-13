@@ -6,11 +6,10 @@ import { TaskDetailComponent } from './task-detail/task-detail/task-detail.compo
 import { AuthGuard } from '../core/auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/task-list', pathMatch: 'full' },
-  { path: 'task-list', component: TaskListComponent , canActivate: [AuthGuard]},
-  { path: 'task-form', component: TaskFormComponent , canActivate: [AuthGuard]},
-  { path: 'task-detail/:id', component: TaskDetailComponent, canActivate: [AuthGuard]},
-  // { path: '**', redirectTo: '/tasks' }
+  { path: '', redirectTo: 'task-list', pathMatch: 'full' },
+  { path: 'task-list', component: TaskListComponent, canActivate: [AuthGuard] },
+  { path: 'task-form', component: TaskFormComponent, canActivate: [AuthGuard] },
+  { path: 'task-detail/:id', component: TaskDetailComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

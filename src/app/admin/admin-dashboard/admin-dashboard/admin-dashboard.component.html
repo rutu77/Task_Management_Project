@@ -1,1 +1,28 @@
-<p>admin-dashboard works!</p>
+<section class="page-shell">
+  <div class="page-heading">
+    <div>
+      <span class="eyebrow">Admin</span>
+      <h2>Dashboard</h2>
+    </div>
+    <a routerLink="/admin/users" class="primary-btn small-btn">Manage users</a>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span>Total tasks</span>
+      <strong>{{ totalTasks }}</strong>
+    </div>
+    <div class="stat-card muted">
+      <span>Pending</span>
+      <strong>{{ pendingTasks }}</strong>
+    </div>
+    <div class="stat-card success">
+      <span>Completed</span>
+      <strong>{{ completedTasks }}</strong>
+    </div>
+    <div class="stat-card">
+      <span>Users</span>
+      <strong>{{ totalUsers }}</strong>
+    </div>
+  </div>
+</section>

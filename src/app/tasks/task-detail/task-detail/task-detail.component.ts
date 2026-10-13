@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-task-detail',
   standalone: false,
   templateUrl: './task-detail.component.html',
-  styleUrls: ['./task-detail.component.css'] // Corrected typo: styleUrls
+  styleUrls: ['./task-detail.component.css']
 })
 export class TaskDetailComponent implements OnInit {
   task?: Task;
@@ -15,7 +15,7 @@ export class TaskDetailComponent implements OnInit {
   constructor(private _task: TaskService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    const id = +this.route.snapshot.paramMap.get('id')!;
+    const id = Number(this.route.snapshot.paramMap.get('id'));
     this.task = this._task.getTaskById(id);
   }
 }

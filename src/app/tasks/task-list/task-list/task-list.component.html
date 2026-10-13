@@ -1,16 +1,73 @@
-<div class="task-list">
-    <h2>Task List</h2>
-    <ul>
-      <li *ngFor="let task of tasks">
-        {{ task.title }} - {{ task.description }} <br>
-        {{ task.status }} <br>
-        {{ task.priority }} <br>
-        <button (click)="updateTaskStatus(task.id, 'Pending')">Pending</button>
-        <button (click)="updateTaskStatus(task.id, 'In Progress')">In Progress</button>
-        <button (click)="updateTaskStatus(task.id, 'Completed')">Completed</button>
-        <button (click)="deleteTask(task.id)">Delete Task</button>
-        <a [routerLink]="['/tasks/task-detail', task.id]">View Details</a>
-      </li>
-    </ul>
+<section class="page-shell">
+  <div class="page-heading">
+    <div>
+      <span class="eyebrow">Overview</span>
+      <h2>Task dashboard</h2>
+    </div>
+    <a routerLink="/tasks/task-form" class="primary-btn small-btn">+ New task</a>
   </div>
-  
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span>Total</span>
+      <strong>{{ summary.total }}</strong>
+    </div>
+    <div class="stat-card muted">
+      <span>Pending</span>
+      <strong>{{ summary.pending }}</strong>
+    </div>
+    <div class="stat-card muted">
+      <span>In progress</span>
+      <strong>{{ summary.inProgress }}</strong>
+    </div>
+    <div class="stat-card success">
+      <span>Completed</span>
+      <strong>{{ summary.completed }}</strong>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Search tasks..." aria-label="Search tasks" />
+
+    <select [(ngModel)]="filterStatus" aria-label="Filter tasks by status">
+      <option value="All">All statuses</option>
+      <option value="Pending">Pending</option>
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+  </div>
+
+  <div class="task-grid" *ngIf="filteredTasks.length; else emptyState">
+    <article class="task-card" *ngFor="let task of filteredTasks">
+      <div class="task-card-header">
+        <div>
+          <h3>{{ task.title }}</h3>
+          <span class="priority-badge" [ngClass]="task.priority.toLowerCase()">{{ task.priority }}</span>
+        </div>
+        <span class="status-badge" [ngClass]="task.status.toLowerCase().replace(' ', '-')">{{ task.status }}</span>
+      </div>
+
+      <p>{{ task.description }}</p>
+
+      <div class="task-meta">
+        <span>{{ task.createdAt | date:'mediumDate' }}</span>
+      </div>
+
+      <div class="task-actions">
+        <button class="secondary-btn" (click)="updateTaskStatus(task.id, 'Pending')">Pending</button>
+        <button class="secondary-btn" (click)="updateTaskStatus(task.id, 'In Progress')">Progress</button>
+        <button class="secondary-btn" (click)="updateTaskStatus(task.id, 'Completed')">Done</button>
+        <button class="danger-btn" (click)="deleteTask(task.id)">Delete</button>
+      </div>
+
+      <a class="inline-link" [routerLink]="['/tasks/task-detail', task.id]">View details</a>
+    </article>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="empty-state">
+      <p>No tasks match your search yet.</p>
+      <a routerLink="/tasks/task-form" class="primary-btn small-btn">Create one</a>
+    </div>
+  </ng-template>
+</section>

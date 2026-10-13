@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../../core/services/auth.service';
 import { TaskService } from '../../../core/services/task.service';
 import { Task } from '../../../core/models/task.model';
 
@@ -7,21 +6,43 @@ import { Task } from '../../../core/models/task.model';
   selector: 'app-task-form',
   standalone: false,
   templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.css'
+  styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent{
-  task:Task ={id:0,title:'',description:'',status:'Pending',priority:'Normal'};
+export class TaskFormComponent {
+  task: Task = {
+    id: Date.now(),
+    title: '',
+    description: '',
+    status: 'Pending',
+    priority: 'Normal',
+    createdAt: new Date().toISOString()
+  };
 
-  constructor(private _task:TaskService){}
+  constructor(private _task: TaskService) {}
 
-  addTask():void{
-    this.task.id=Date.now();
-    this._task.addTask(this.task,this.task.priority);
-    this.task={id:0,title:'',description:'',status:'Pending',priority:'Normal'}; //reset form
+  addTask(): void {
+    const title = this.task.title.trim();
+    const description = this.task.description.trim();
+
+    if (!title || !description) {
+      return;
+    }
+
+    this._task.addTask({
+      ...this.task,
+      id: Date.now(),
+      title,
+      description,
+      createdAt: new Date().toISOString()
+    }, this.task.priority);
+
+    this.task = {
+      id: Date.now(),
+      title: '',
+      description: '',
+      status: 'Pending',
+      priority: 'Normal',
+      createdAt: new Date().toISOString()
+    };
   }
-
-  // updateTaskPriority(id:number, newPriority:'Low' | 'Normal' | 'High'): void {
-  //   this._task.updateTaskPriority(id,newPriority)
-  // }
-
 }

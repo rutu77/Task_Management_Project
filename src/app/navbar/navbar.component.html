@@ -1,6 +1,17 @@
-<nav *ngIf="isLoggedIn">
-    <a routerLink="/tasks/task-list">Tasks</a> |
-    <a routerLink="/admin" *ngIf="isAdmin">Admin</a> |
-    <button (click)="logout()">Logout</button>
+<nav class="topbar" *ngIf="isLoggedIn">
+  <div class="brand-wrap">
+    <span class="brand-mark">TF</span>
+    <span class="brand-name">TaskFlow</span>
+  </div>
+
+  <div class="nav-links">
+    <a routerLink="/tasks/task-list">Tasks</a>
+    <a routerLink="/tasks/task-form">New task</a>
+    <a *ngIf="isAdmin" routerLink="/admin/admin-dash">Admin</a>
+  </div>
+
+  <div class="user-menu">
+    <span class="user-pill" *ngIf="currentUser">{{ currentUser }}</span>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
 </nav>
-  

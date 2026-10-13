@@ -1,9 +1,40 @@
-<div *ngIf="task" class="task-details">
-    <h2>Task Details</h2>
-    <p>Name: {{ task.title }}</p>
-    <p>Description: {{ task.description }}</p>
-    <p>Status: {{ task.status }}</p>
-    <p>Priority: {{ task.priority }}</p>
-</div>
-<div *ngIf="!task">No Task Details Found</div>
-  
+<section class="page-shell">
+  <div class="panel detail-panel" *ngIf="task; else noTask">
+    <div class="panel-header">
+      <div>
+        <span class="eyebrow">Details</span>
+        <h2>{{ task.title }}</h2>
+      </div>
+      <a class="inline-link" routerLink="/tasks/task-list">Back to tasks</a>
+    </div>
+
+    <div class="detail-body">
+      <div class="detail-row">
+        <span class="label">Status</span>
+        <span class="status-badge" [ngClass]="task.status.toLowerCase().replace(' ', '-')">{{ task.status }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Priority</span>
+        <span class="priority-badge" [ngClass]="task.priority.toLowerCase()">{{ task.priority }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Created</span>
+        <span>{{ task.createdAt ? (task.createdAt | date:'mediumDate') : 'Not set' }}</span>
+      </div>
+
+      <div class="detail-block">
+        <span class="label">Description</span>
+        <p>{{ task.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noTask>
+    <div class="empty-state">
+      <p>No task details found for this item.</p>
+      <a routerLink="/tasks/task-list" class="primary-btn small-btn">Go to tasks</a>
+    </div>
+  </ng-template>
+</section>

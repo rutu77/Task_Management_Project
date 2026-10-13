@@ -1,1 +1,28 @@
-<p>user-management works!</p>
+<section class="page-shell">
+  <div class="page-heading">
+    <div>
+      <span class="eyebrow">Admin</span>
+      <h2>User management</h2>
+    </div>
+    <a routerLink="/admin/admin-dash" class="inline-link">Back to dashboard</a>
+  </div>
+
+  <div class="panel table-panel">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>#{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
