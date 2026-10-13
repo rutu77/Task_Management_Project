@@ -27,18 +27,6 @@ This project includes seeded users for quick testing:
 - Admin: `admin` / `admin123`
 - User: `user` / `user123`
 
-## Screenshots
-
-### Dashboard View
-
-![Task dashboard](<img width="1343" height="631" alt="image" src="https://github.com/user-attachments/assets/8119d976-922d-42db-bfb0-212fa3997014" />
-)
-
-### Task Details View
-
-![Task details](<img width="1343" height="588" alt="image" src="https://github.com/user-attachments/assets/410cea2a-f315-43c0-8d4a-9e0e5a982aa7" />
-)
-
 ## Features
 
 ### Task Management
