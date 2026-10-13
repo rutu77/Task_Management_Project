@@ -1,3 +1,4 @@
+<img width="1343" height="631" alt="image" src="https://github.com/user-attachments/assets/f62a7259-9637-49db-8b74-1bfb919609d9" />
 # TaskFlow
 
 TaskFlow is a modern Angular-based task management application designed for managing daily tasks with role-based access. It includes task tracking, status updates, search/filter tools, and an admin dashboard.
@@ -30,11 +31,13 @@ This project includes seeded users for quick testing:
 
 ### Dashboard View
 
-![Task dashboard](./docs/screenshots/task-dashboard.png)
+![Task dashboard](<img width="1343" height="631" alt="image" src="https://github.com/user-attachments/assets/8119d976-922d-42db-bfb0-212fa3997014" />
+)
 
 ### Task Details View
 
-![Task details](./docs/screenshots/task-details.png)
+![Task details](<img width="1343" height="588" alt="image" src="https://github.com/user-attachments/assets/410cea2a-f315-43c0-8d4a-9e0e5a982aa7" />
+)
 
 ## Features
 
